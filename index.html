@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ivana untitled</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #191d2a;
+    }
+
+    .background-layer {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transform: translateY(100vh);
+      animation: slideUp 1s ease-out forwards;
+    }
+
+    /* Delay animations per layer */
+    .layer1 { background-image: url('assets/ivana.png'); animation-delay: 0s; z-index: 1; }
+    .layer2 { background-image: url('assets/projects.png'); animation-delay: 0.4s; z-index: 2; }
+    .layer3 { background-image: url('assets/box.png'); animation-delay: 0.6s; z-index: 3; }
+    .layer4 { background-image: url('assets/me.PNG'); animation-delay: 0.6s; z-index: 4; }
+    .layer5 { background-image: url('assets/16.png'); animation-delay: 0.8s; z-index: 5; }
+    .layer6 { background-image: url('assets/description.png'); animation-delay: 1.0s; z-index: 6; }
+    .layer7 { background-image: url('assets/info.PNG'); animation-delay: 1.4s; z-index: 7; }
+    .layer8 { background-image: url('assets/links.png'); animation-delay: 1.5s; z-index: 8; }
+    .layer9 { background-image: url('assets/skills.png'); animation-delay: 1.6s; z-index: 9; }
+    .layer10 { background-image: url('assets/contact.png'); animation-delay: 1.7s; z-index: 10; }
+    .layer11 { background-image: url('assets/infotext.PNG'); animation-delay: 2.0s; z-index: 11; }
+    .layer12 { background-image: url('assets/linkstext.png'); animation-delay: 2.1s; z-index: 12; }
+    .layer13 { background-image: url('assets/skillstext.png'); animation-delay: 2.2s; z-index: 13; }
+    .layer14 { background-image: url('assets/contacttext.PNG'); animation-delay: 2.6s; z-index: 14; }
+
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    /* Hotspot style */
+    .hotspot {
+      position: absolute;
+      background-color: rgba(255, 0, 0, 0.3); /* visible for testing */
+      cursor: pointer;
+      pointer-events: none; /* disable at first */
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 20; /* on top of everything */
+    }
+
+    .hotspot.active {
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      position: absolute;
+      background: linear-gradient(135deg, #7aa5e7, #7aa5e7);
+      padding: 0px 0px 10px 0px;
+      width: 280px;
+      border-radius: 12px;
+      box-shadow:
+        0 10px 15px rgba(0,0,0,0.1),
+        0 4px 6px rgba(0,0,0,0.05);
+      text-align: center;
+      cursor: default;
+      user-select: none;
+      border: none;
+      outline: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      /* Initially transform is set dynamically */
+      transform: translate3d(0, 0, 0);
+    }
+
+    .modal-header {
+      cursor: grab;
+      background: linear-gradient(135deg, #d4d7db, #b9bcc1);
+      color: #333;
+      padding: 10px 16px;
+      border-radius: 12px 12px 0 0;
+      font-weight: 600;
+      user-select: none;
+      box-shadow: inset 0 -1px 0 rgba(255,255,255,0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-button {
+      font-size: 22px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      color: #666;
+      transition: color 0.2s ease;
+    }
+
+    .close-button:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Layers -->
+  <div class="background-layer layer1"></div>
+  <div class="background-layer layer2"></div>
+  <div class="background-layer layer3"></div>
+  <div class="background-layer layer4"></div>
+  <div class="background-layer layer5"></div>
+  <div class="background-layer layer6"></div>
+  <div class="background-layer layer7"></div>
+  <div class="background-layer layer8"></div>
+  <div class="background-layer layer9"></div>
+  <div class="background-layer layer10"></div>
+  <div class="background-layer layer11"></div>
+  <div class="background-layer layer12"></div>
+  <div class="background-layer layer13"></div>
+  <div class="background-layer layer14"></div>
+
+  <!-- Clickable Hotspots -->
+  <a href="#" class="hotspot" id="hotspot1" style="top: 433px; left: 1020px; width: 82px; height: 81px;"></a>
+  <a href="#" class="hotspot" id="hotspot2" style="top: 433px; left: 870px; width: 85px; height: 85px;"></a>
+  <a href="#" class="hotspot" id="hotspot3" style="top: 450px; left: 720px; width: 80px; height: 80px;"></a>
+  <a href="#" class="hotspot" id="hotspot4" style="top: 450px; left: 590px; width: 78px; height: 80px;"></a>
+
+  <!-- Modal Popup -->
+  <div id="modal" class="modal">
+    <div class="modal-content" id="modalContent">
+      <div class="modal-header" id="modalHeader">
+        Popup
+        <span class="close-button" id="closeBtn">&times;</span>
+      </div>
+      <div id="modalBody" style="margin-top: 10px;">
+        <!-- Content filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Enable hotspots after 3 seconds
+    setTimeout(() => {
+      document.querySelectorAll('.hotspot').forEach(el => {
+        el.classList.add('active');
+      });
+    }, 3000);
+
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const modalBody = document.getElementById('modalBody');
+    const closeBtn = document.getElementById('closeBtn');
+    const modalHeader = document.getElementById('modalHeader');
+
+    // Hotspot content dictionary
+    const hotspotTexts = {
+      hotspot1: "You clicked hotspot 1! Customize this popup content.",
+      hotspot2: "This is hotspot 2's popup content.",
+      hotspot3: "Info for hotspot 3 goes here.",
+      hotspot4: "Details for hotspot 4 here."
+    };
+
+    // Variables for drag position
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    // Show modal with content, center it with transform
+    function showModal(id) {
+      modalBody.textContent = hotspotTexts[id] || "No content available.";
+      modal.style.display = 'flex';
+
+      // Reset top and left to 0
+      modalContent.style.top = '0';
+      modalContent.style.left = '0';
+
+      // Calculate center position
+      const modalWidth = modalContent.offsetWidth;
+      const modalHeight = modalContent.offsetHeight;
+      const centerX = (window.innerWidth - modalWidth) / 2;
+      const centerY = (window.innerHeight - modalHeight) / 2;
+
+      currentX = centerX;
+      currentY = centerY;
+
+      modalContent.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
+
+    // Drag start
+    function dragStart(e) {
+      isDragging = true;
+      let clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+      let clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+      startX = clientX - currentX;
+      startY = clientY - currentY;
+
+      modalHeader.style.cursor = 'grabbing';
+
+      document.addEventListener('mousemove', dragMove);
+      document.addEventListener('touchmove', dragMove, { passive: false });
+      document.addEventListener('mouseup', dragEnd);
+      document.addEventListener('touchend', dragEnd);
+    }
+
+    // Drag move
+    function dragMove(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+
+      let clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+      let clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+      let newX = clientX - startX;
+      let newY = clientY - startY;
+
+      const maxX = window.innerWidth - modalContent.offsetWidth;
+      const maxY = window.innerHeight - modalContent.offsetHeight;
+
+      if (newX < 0) newX = 0;
+      if (newY < 0) newY = 0;
+      if (newX > maxX) newX = maxX;
+      if (newY > maxY) newY = maxY;
+
+      currentX = newX;
+      currentY = newY;
+
+      modalContent.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
+
+    // Drag end
+    function dragEnd() {
+      isDragging = false;
+      modalHeader.style.cursor = 'grab';
+
+      document.removeEventListener('mousemove', dragMove);
+      document.removeEventListener('touchmove', dragMove);
+      document.removeEventListener('mouseup', dragEnd);
+      document.removeEventListener('touchend', dragEnd);
+    }
+
+    // Close modal function
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // Event listeners
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    modalHeader.addEventListener('mousedown', dragStart);
+    modalHeader.addEventListener('touchstart', dragStart);
+
+    // Hotspot click event to open modal
+    document.querySelectorAll('.hotspot').forEach(hotspot => {
+      hotspot.addEventListener('click', (e) => {
+        e.preventDefault();
+        showModal(hotspot.id);
+      });
+    });
+  </script>
+</body>
+</html>
