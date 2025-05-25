@@ -49,7 +49,7 @@
     /* Hotspot style */
     .hotspot {
       position: absolute;
-      background-color: rgba(255, 0, 0, 0.3); /* visible for testing */
+      background-color: rgba(255, 0, 0, 0); /* visible for testing */
       cursor: pointer;
       pointer-events: none; /* disable at first */
       opacity: 0;
@@ -77,7 +77,7 @@
     }
     .modal-content {
       position: absolute;
-      background: linear-gradient(135deg, #7aa5e7, #7aa5e7);
+      background: linear-gradient(135deg, #48566b, #48566b);
       padding: 0px 0px 10px 0px;
       width: 280px;
       border-radius: 12px;
@@ -97,7 +97,7 @@
 
     .modal-header {
       cursor: grab;
-      background: linear-gradient(135deg, #d4d7db, #b9bcc1);
+      background: linear-gradient(135deg, #22262d, #22262d);
       color: #333;
       padding: 10px 16px;
       border-radius: 12px 12px 0 0;
@@ -114,12 +114,12 @@
       font-weight: 700;
       cursor: pointer;
       user-select: none;
-      color: #666;
+      color: #ffffff;
       transition: color 0.2s ease;
     }
 
     .close-button:hover {
-      color: #000;
+      color: #f90000;
     }
   </style>
 </head>
@@ -176,10 +176,10 @@
 
     // Hotspot content dictionary
     const hotspotTexts = {
-      hotspot1: "You clicked hotspot 1! Customize this popup content.",
-      hotspot2: "This is hotspot 2's popup content.",
-      hotspot3: "Info for hotspot 3 goes here.",
-      hotspot4: "Details for hotspot 4 here."
+      hotspot1: "CONTACT INFORMATION:",
+      hotspot2: "SKILLS",
+      hotspot3: "LINKS",
+      hotspot4: "INFO"
     };
 
     // Variables for drag position
