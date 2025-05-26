@@ -98,12 +98,11 @@
     .modal-header {
       cursor: grab;
       background: linear-gradient(135deg, #22262d, #22262d);
-      color: #333;
+      color: #ffffff;
       padding: 10px 16px;
       border-radius: 12px 12px 0 0;
       font-weight: 600;
       user-select: none;
-      box-shadow: inset 0 -1px 0 rgba(255,255,255,0.6);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -151,10 +150,13 @@
   <div id="modal" class="modal">
     <div class="modal-content" id="modalContent">
       <div class="modal-header" id="modalHeader">
-        Popup
+        press to close -->
         <span class="close-button" id="closeBtn">&times;</span>
       </div>
-      <div id="modalBody" style="margin-top: 10px;">
+    <div id="modalBody" style="margin-top: 10px; color: white; padding: 0 16px; font-size: 14px; line-height: 1.5;">
+     <!-- Content filled by JS -->
+    </div>
+
         <!-- Content filled by JS -->
       </div>
     </div>
@@ -176,11 +178,26 @@
 
     // Hotspot content dictionary
     const hotspotTexts = {
-      hotspot1: "CONTACT INFORMATION:",
-      hotspot2: "SKILLS",
-      hotspot3: "LINKS",
-      hotspot4: "INFO"
-    };
+  hotspot1: `
+    <h3 style="color: #b3e5fc;">contact info</h3>
+    <p>email: <a href="ivana4nl@gmail.com" style="color: #90caf9;">ivana4nl@gmail.com</a></p>
+    <p>number: <a href="607-374-9613" target="_blank" style="color: #90caf9;">607-374-9613</a></p>
+  `,
+  hotspot2: `
+    <h3 style="color: #b3e5fc;">skills</h3>
+    <p>HTML / JavaScript</p>
+    <p>after effects and davinci resolve</p>
+  `,
+  hotspot3: `
+    <h3 style="color: #b3e5fc;">links</h3>
+    <p><a href="https://github.com/ivana4nl" target="_blank" style="color: #90caf9;">GitHub</a></p>
+  `,
+  hotspot4: `
+    <h3 style="color: #b3e5fc;">info</h3>
+    <p>hi! i'm ivana, a high school student trying to learn as much as i can about my interests before i go to college!</p>
+  `
+};
+
 
     // Variables for drag position
     let isDragging = false;
@@ -191,7 +208,7 @@
 
     // Show modal with content, center it with transform
     function showModal(id) {
-      modalBody.textContent = hotspotTexts[id] || "No content available.";
+    modalBody.innerHTML = hotspotTexts[id] || "<p>No content available.</p>";
       modal.style.display = 'flex';
 
       // Reset top and left to 0
